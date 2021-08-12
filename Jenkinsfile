@@ -1,7 +1,7 @@
 @Library('jenkins-library@1.0.2') _
 
 // Build native docker image
-buildSimpleDocker(buildContext: 'offchain-computing/offchain-python-hello-world',
+buildSimpleDocker(buildContext: 'offchain-computing',
   dockerImageRepositoryName: 'offchain-python-hello-world',
   imageprivacy: 'public')
 
