@@ -1,6 +1,6 @@
---name=pythonHelloWorld \
---from=offchain-python-hello-world \
---to=tee-offchain-python-hello-world \
+--name=offchain-python-hello-world \
+--from=${IMG_FROM} \
+--to=${IMG_TO} \
 --binary-fs \
 --fs-dir=/app \
 --host-path=/etc/hosts \
