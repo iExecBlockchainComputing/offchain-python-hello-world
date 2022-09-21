@@ -1,9 +1,8 @@
 FROM docker-regis.iex.ec/iexec-graphene-base:0.6.0
 
-RUN apt-get update && apt install -y python3 apktool gcc musl-dev
-
-### install needed python3 dependencies
-RUN pip3 install eth_abi
+RUN apt-get update \
+    && apt install -y python3 apktool gcc musl-dev \
+    && pip3 install eth_abi
 
 ARG SOURCE_DIR=src
 ARG GRAMINE_DIR=gramine
@@ -32,4 +31,5 @@ RUN /graphene/python/graphene-sgx-sign \
 
 RUN rm -rf /var/tmp/* \
     && rm -rf /graphene/python/graphene-sgx-sign /graphene/python/graphenelibos/sgx_sign.py \
-    && rm -rf /signer-key.pem
+    && rm -rf /signer-key.pem \
+    && rm -rf /var/lib/apt/lists/*
