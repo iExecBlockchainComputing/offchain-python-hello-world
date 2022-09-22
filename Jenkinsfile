@@ -2,6 +2,7 @@
 
 buildInfo = getBuildInfo()
 
+baseDir = 'offchain-computing'
 def nativeImage = buildSimpleDocker_v3(
         buildInfo: buildInfo,
         dockerfileDir: baseDir,
