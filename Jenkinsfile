@@ -2,17 +2,27 @@
 
 buildInfo = getBuildInfo()
 
-def nativeImage = buildSimpleDocker_v2(
-  buildInfo: buildInfo,
-  dockerfileDir: 'offchain-computing',
-  dockerImageRepositoryName: 'offchain-python-hello-world',
-  imageprivacy: 'public'
+baseDir = 'offchain-computing'
+def nativeImage = buildSimpleDocker_v3(
+        buildInfo: buildInfo,
+        dockerfileDir: baseDir,
+        buildContext: baseDir,
+        dockerImageRepositoryName: 'offchain-python-hello-world',
+        visibility: 'docker.io'
+)
+
+buildSimpleDocker_v3(
+        buildInfo: buildInfo,
+        dockerfileDir: baseDir + '/gramine',
+        buildContext: baseDir,
+        dockerImageRepositoryName: 'tee-gramine-offchain-python-hello-world',
+        visibility: 'iex.ec'
 )
 
 sconeBuildUnlocked(
-  nativeImage:     nativeImage,
-  imageName:       'offchain-python-hello-world',
-  imageTag:        buildInfo.imageTag,
-  sconifyArgsPath: 'offchain-computing/sconify.args',
-  sconifyVersion:  '5.7.1'
+        nativeImage: nativeImage,
+        imageName: 'offchain-python-hello-world',
+        imageTag: buildInfo.imageTag,
+        sconifyArgsPath: baseDir + '/sconify.args',
+        sconifyVersion: '5.7.1'
 )
