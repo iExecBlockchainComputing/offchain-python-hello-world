@@ -1,5 +1,4 @@
-# FIXME: use tagged version when released
-FROM docker-regis.iex.ec/iexec-graphene-base:0.7.0
+FROM docker-regis.iex.ec/iexec-graphene-base:0.8.0
 
 RUN apt-get update \
     && apt install -y python3 apktool gcc musl-dev \
@@ -19,8 +18,7 @@ WORKDIR /workplace/app
 
 # Copy the manifest to use from within the base image
 # or create your own
-RUN mv /common-manifests/python.entrypoint.manifest /entrypoint.manifest \
-    && rm -r /common-manifests
+RUN cp /common-manifests/python.entrypoint.manifest /entrypoint.manifest
 
 # Finalize app (finalize manifest and sign app)
 RUN /finalize-app.sh
