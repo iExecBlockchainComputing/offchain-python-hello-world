@@ -43,7 +43,7 @@ def save_result(result):
     file (deterministic-output-path).
     """
     iexec_out = os.environ['IEXEC_OUT']
-    callback_data = eth_abi.encode_abi(['string'], [result]).hex()
+    callback_data = eth_abi.encode(['string'], [result]).hex()
     print('Callback is ready [data:{}, callback-data:{}]'.format(result, callback_data))
     # prepare callback to be sent to the smart-contract
     computed_file_content = {"callback-data": callback_data}
